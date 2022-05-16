@@ -13,18 +13,31 @@ import java.util.Date;
 @Entity
 @Data
 @AllArgsConstructor
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@NoArgsConstructor
+@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "account")
-public class Account {
+public abstract class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
+    @Column(length = 510)
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "amount", column = @Column(name = "balance_amount", nullable = false)),
+            @AttributeOverride(name = "currency", column = @Column(name = "balance_currency", nullable = false))
+    })
     private Money balance;
     @NotNull
     private String primaryOwner;
     private String secondaryOwner;
     @NotNull
+    @Column(length = 510)
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "amount", column = @Column(name = "penaltyFee_amount", nullable = false)),
+            @AttributeOverride(name = "currency", column = @Column(name = "penaltyFee_currency", nullable = false))
+    })
     private Money penaltyFee;
     @NotNull
     private Date creationDate;
@@ -43,6 +56,5 @@ public class Account {
         this.secretKey = secretKey;
     }
 
-    public Account() {
-    }
+
 }

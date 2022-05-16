@@ -6,28 +6,33 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
 @Entity
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "checking")
 public class CheckingAccounts extends Account{
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+
     @NotNull
     private double minBalance;
     @NotNull
+    @Column(length = 510)
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "amount", column = @Column(name = "monthlyMaintenanceFee_amount", nullable = false)),
+            @AttributeOverride(name = "currency", column = @Column(name = "monthlyMaintenanceFee_currency", nullable = false))
+    })
     private Money monthlyMaintenanceFee;
 
-    public CheckingAccounts( @NotNull Money balance, @NotNull String primaryOwner, String secondaryOwner, @NotNull Money penaltyFee, @NotNull Date creationDate, @NotNull Status status, @NotNull String secretKey, double minBalance, Money monthlyMaintenanceFee) {
+    public CheckingAccounts(Money balance, String primaryOwner, String secondaryOwner, Money penaltyFee, Date creationDate, Status status, String secretKey, double minBalance, Money monthlyMaintenanceFee) {
         super(balance, primaryOwner, secondaryOwner, penaltyFee, creationDate, status, secretKey);
         this.minBalance = minBalance;
         this.monthlyMaintenanceFee = monthlyMaintenanceFee;
     }
 
-    public CheckingAccounts() {
-    }
+
 }

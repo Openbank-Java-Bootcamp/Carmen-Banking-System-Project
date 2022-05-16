@@ -12,10 +12,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Table(name = "third_party")
 public class ThirdParty extends User{
-    @Id
+    /*@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id;*/
     @NotNull
     private String hashedKey;
 
+    public ThirdParty(String name, String hashedKey) {
+        super(name);
+        this.hashedKey = hashedKey;
+    }
 }

@@ -13,18 +13,15 @@ import java.util.Date;
 @Entity
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "savings")
 public class Savings extends Account{
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+
     private double interestRate;
 
-    public Savings() {
-    }
 
-    public Savings(Long id, @NotNull Money balance, @NotNull String primaryOwner, String secondaryOwner, @NotNull Money penaltyFee, @NotNull Date creationDate, @NotNull Status status, @NotNull String secretKey, double interestRate) {
-        super(id, balance, primaryOwner, secondaryOwner, penaltyFee, creationDate, status, secretKey);
+    public Savings(Money balance, String primaryOwner, String secondaryOwner, Money penaltyFee, Date creationDate, Status status, String secretKey, double interestRate) {
+        super(balance, primaryOwner, secondaryOwner, penaltyFee, creationDate, status, secretKey);
         this.interestRate = interestRate;
     }
 }

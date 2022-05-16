@@ -10,24 +10,16 @@ import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 import java.util.Collection;
 
-
 @Entity
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-@Inheritance(strategy = InheritanceType.JOINED)
-@Table(name = "user")
-public abstract class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @NotNull
-    private String name;
-//One to many from user to account?
-    @OneToOne(fetch = FetchType.EAGER)
-    private Role role;
+@Table(name = "admin")
+public class Admin extends User {
 
-    public User(String name) {
-        this.name = name;
+    @OneToOne(fetch = FetchType.EAGER)
+    private Role role = new Role();
+
+    public Admin(String name) {
+        super(name);
     }
 }

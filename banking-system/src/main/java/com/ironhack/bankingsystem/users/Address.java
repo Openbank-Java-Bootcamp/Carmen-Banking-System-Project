@@ -1,6 +1,9 @@
 package com.ironhack.bankingsystem.users;
 
 import jakarta.persistence.Embeddable;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,4 +22,5 @@ public class Address {
     private String country;
     @NotNull
     private String postalCode;
+
 }
