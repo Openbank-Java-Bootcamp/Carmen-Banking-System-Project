@@ -13,9 +13,6 @@ import lombok.NoArgsConstructor;
 @Table(name = "account_holders")
 public class AccountHolders extends User{
 
-    /*@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;*/
     @NotNull
     private String dateOfBirth;
     @NotNull

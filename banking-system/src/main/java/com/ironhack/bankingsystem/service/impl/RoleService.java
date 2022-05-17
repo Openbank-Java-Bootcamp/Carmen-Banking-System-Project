@@ -26,7 +26,7 @@ public class RoleService implements RoleServiceInterface {
         return roleRepository.save(role);
     }
 
-    public void addRoleToUser(String name, String roleName) {
+    public void addRoleToAdmin(String name, String roleName) {
         Admin admin = adminRepository.findByName(name);
         Role role = roleRepository.findByName(roleName);
 

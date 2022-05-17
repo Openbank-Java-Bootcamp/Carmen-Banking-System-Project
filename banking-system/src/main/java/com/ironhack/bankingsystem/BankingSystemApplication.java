@@ -25,12 +25,13 @@ public class BankingSystemApplication {
 	@Bean
 	CommandLineRunner run(AdminService adminService, RoleService roleService) {
 		return args -> {
-			roleService.saveRole(new Role(null, "ROLE_USER"));
+			roleService.saveRole(new Role(null, "ROLE_ACCOUNT_HOLDERS"));
+			roleService.saveRole(new Role(null, "ROLE_THIRD_PARTY"));
 			roleService.saveRole(new Role(null, "ROLE_ADMIN"));
 
-			/*adminService.saveAdmin(new Admin("John Doe"));
+		/*	adminService.saveAdmin(new Admin("John Doe"));
 
-			roleService.addRoleToUser("John Doe", "ROLE_ADMIN");*/
+			roleService.addRoleToAdmin("John Doe", "ROLE_ADMIN");*/
 		};
 	}
 }

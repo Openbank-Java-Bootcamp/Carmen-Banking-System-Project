@@ -1,6 +1,5 @@
 package com.ironhack.bankingsystem.controllers.impl;
 
-import com.ironhack.bankingsystem.DTO.RoleToUserDTO;
 import com.ironhack.bankingsystem.controllers.interfaces.RoleControllerInterface;
 import com.ironhack.bankingsystem.models.Role;
 import com.ironhack.bankingsystem.service.interfaces.RoleServiceInterface;
@@ -20,8 +19,8 @@ public class RoleController implements RoleControllerInterface {
         roleService.saveRole(role);
     }
 
-    @PostMapping("/roles/addtouser")
-    public void addRoleToUser(@RequestBody RoleToUserDTO roleToUserDTO) {
-        roleService.addRoleToUser(roleToUserDTO.getUsername(),roleToUserDTO.getRoleName());
+    @PostMapping("/roles/addtoadmin")
+    public void addRoleToAdmin(@RequestBody RoleToAdminDTO roleToAdminDTO) {
+        roleService.addRoleToAdmin(roleToAdminDTO.getUsername(), roleToAdminDTO.getRoleName());
     }
 }

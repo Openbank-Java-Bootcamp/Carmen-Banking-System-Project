@@ -16,8 +16,8 @@ import java.util.Collection;
 @Table(name = "admin")
 public class Admin extends User {
 
-    @OneToOne(fetch = FetchType.EAGER)
-    private Role role = new Role();
+   /* @OneToOne(fetch = FetchType.EAGER)
+    private Role role = new Role();*/
 
     public Admin(String name) {
         super(name);

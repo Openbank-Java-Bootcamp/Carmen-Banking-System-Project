@@ -6,6 +6,6 @@ import com.ironhack.bankingsystem.models.Role;
 
 public interface RoleServiceInterface {
     Role saveRole(Role role);
-    void addRoleToUser(String userName, String roleName);
+    void addRoleToAdmin(String userName, String roleName);
 
 }

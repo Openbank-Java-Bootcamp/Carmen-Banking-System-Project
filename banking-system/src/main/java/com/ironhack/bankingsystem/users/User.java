@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import static jakarta.persistence.FetchType.EAGER;
+
 
 @Entity
 @Data
@@ -23,11 +25,18 @@ public abstract class User {
     private Long id;
     @NotNull
     private String name;
+
+
+
 //One to many from user to account?
-    @OneToOne(fetch = FetchType.EAGER)
-    private Role role;
+   /* @OneToOne(fetch = FetchType.EAGER)
+    private Role role;*/
+@ManyToMany(fetch = EAGER)
+private Collection<Role> roles = new ArrayList<>();
 
     public User(String name) {
         this.name = name;
     }
+
+
 }
