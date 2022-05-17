@@ -1,5 +1,6 @@
 package com.ironhack.bankingsystem.users;
 
+import com.ironhack.bankingsystem.models.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -35,8 +36,8 @@ public class AccountHolders extends User{
 
   /*  @OneToMany*/
 
-    public AccountHolders( String name, String dateOfBirth, Address primaryAddress, Address mailingAddress) {
-        super(name);
+    public AccountHolders(String name, String password, String username, Role role, String dateOfBirth, Address primaryAddress, Address mailingAddress) {
+        super(name, password, username);
         this.dateOfBirth = dateOfBirth;
         this.primaryAddress = primaryAddress;
         this.mailingAddress = mailingAddress;

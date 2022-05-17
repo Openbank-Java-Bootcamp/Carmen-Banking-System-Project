@@ -2,6 +2,7 @@ package com.ironhack.bankingsystem.users;
 
 import com.ironhack.bankingsystem.models.Role;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,24 +20,24 @@ import static jakarta.persistence.FetchType.EAGER;
 @NoArgsConstructor
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "user")
-public abstract class User {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
     private String name;
+    @NotNull
+    private String password;
+    @NotNull
+    private String username;
+    @ManyToMany(fetch = EAGER)
+    private Collection<Role> roles = new ArrayList<>();
 
 
-
-//One to many from user to account?
-   /* @OneToOne(fetch = FetchType.EAGER)
-    private Role role;*/
-@ManyToMany(fetch = EAGER)
-private Collection<Role> roles = new ArrayList<>();
-
-    public User(String name) {
+    public User(String name, String password, String username) {
         this.name = name;
+        this.password = password;
+        this.username = username;
+
     }
-
-
 }

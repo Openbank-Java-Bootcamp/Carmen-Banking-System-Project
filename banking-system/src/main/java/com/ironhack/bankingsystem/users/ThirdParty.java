@@ -1,4 +1,5 @@
 package com.ironhack.bankingsystem.users;
+import com.ironhack.bankingsystem.models.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -18,9 +19,8 @@ public class ThirdParty extends User{
     @NotNull
     private byte[] hashedKey;
 
-
-    public ThirdParty(String name, String message) throws NoSuchAlgorithmException{
-        super(name);
+    public ThirdParty(String name, String password,  String username, Role role,  String message) throws NoSuchAlgorithmException{
+        super(name, password, username);
         MessageDigest digest = MessageDigest.getInstance("SHA-256");
         byte[] encodedHashKey = digest.digest(
                 message.getBytes(StandardCharsets.UTF_8));

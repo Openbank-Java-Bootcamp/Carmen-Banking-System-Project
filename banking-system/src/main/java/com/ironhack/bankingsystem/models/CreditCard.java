@@ -16,9 +16,7 @@ import java.util.Date;
 @Table(name = "credit_card")
 public class CreditCard extends Account{
 
-    /*@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;*/
+
     @NotNull
     private double creditLimit;
     @NotNull
