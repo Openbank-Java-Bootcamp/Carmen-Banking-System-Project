@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Collection;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -38,6 +40,20 @@ public class AccountHolders extends User{
 
     public AccountHolders(String name, String password, String username, String dateOfBirth, Address primaryAddress, Address mailingAddress) {
         super(name, password, username);
+        this.dateOfBirth = dateOfBirth;
+        this.primaryAddress = primaryAddress;
+        this.mailingAddress = mailingAddress;
+    }
+
+    public AccountHolders(Long id, @NotNull String name, @NotNull String password, @NotNull String username, Collection<Role> roles, String dateOfBirth, Address primaryAddress, Address mailingAddress) {
+        super(id, name, password, username, roles);
+        this.dateOfBirth = dateOfBirth;
+        this.primaryAddress = primaryAddress;
+        this.mailingAddress = mailingAddress;
+    }
+
+    public AccountHolders(String name, String username, Collection<Role> roles, String password, String dateOfBirth, Address primaryAddress, Address mailingAddress) {
+        super(name, password, username, roles);
         this.dateOfBirth = dateOfBirth;
         this.primaryAddress = primaryAddress;
         this.mailingAddress = mailingAddress;

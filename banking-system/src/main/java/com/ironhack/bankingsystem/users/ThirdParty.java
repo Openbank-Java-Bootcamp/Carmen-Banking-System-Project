@@ -31,4 +31,5 @@ public class ThirdParty {
                 message.getBytes(StandardCharsets.UTF_8));
         this.hashedKey = encodedHashKey;
     }
+
 }

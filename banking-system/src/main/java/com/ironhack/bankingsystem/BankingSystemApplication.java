@@ -30,18 +30,15 @@ public class BankingSystemApplication {
 		return args -> {
 			userService.saveRole(new Role(null, "ROLE_ADMIN"));
 			userService.saveRole(new Role(null, "ROLE_ACCOUNT_HOLDERS"));
-			userService.saveRole(new Role(null, "ROLE_THIRD_PARTY"));
-
 
 			userService.saveUser(new User("Carmen","1234","Car"));
 			userService.saveUser(new User("Luciano","12345","Lucho"));
 			userService.saveUser(new User("Wanda","123456","Wan"));
-			userService.saveUser(new User("BBVA","123456","Banco"));
 
 			userService.addRoleToUser("Car", "ROLE_ADMIN");
 			userService.addRoleToUser("Lucho", "ROLE_ACCOUNT_HOLDERS");
 			userService.addRoleToUser("Wan", "ROLE_ACCOUNT_HOLDERS");
-			userService.addRoleToUser("Banco", "ROLE_THIRD_PARTY");
+
 
 
 
