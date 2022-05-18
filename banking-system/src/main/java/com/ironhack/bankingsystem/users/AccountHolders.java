@@ -36,7 +36,7 @@ public class AccountHolders extends User{
 
   /*  @OneToMany*/
 
-    public AccountHolders(String name, String password, String username, Role role, String dateOfBirth, Address primaryAddress, Address mailingAddress) {
+    public AccountHolders(String name, String password, String username, String dateOfBirth, Address primaryAddress, Address mailingAddress) {
         super(name, password, username);
         this.dateOfBirth = dateOfBirth;
         this.primaryAddress = primaryAddress;

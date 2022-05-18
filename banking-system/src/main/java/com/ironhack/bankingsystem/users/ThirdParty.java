@@ -14,13 +14,18 @@ import java.security.NoSuchAlgorithmException;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "third_party")
-public class ThirdParty extends User{
+public class ThirdParty {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @NotNull
+    private String name;
     @NotNull
     private byte[] hashedKey;
 
-    public ThirdParty(String name, String password,  String username, Role role,  String message) throws NoSuchAlgorithmException{
-        super(name, password, username);
+    public ThirdParty(String name, String message) throws NoSuchAlgorithmException{
+
         MessageDigest digest = MessageDigest.getInstance("SHA-256");
         byte[] encodedHashKey = digest.digest(
                 message.getBytes(StandardCharsets.UTF_8));

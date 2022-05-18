@@ -19,7 +19,7 @@ public class Admin extends User {
    /* @OneToOne(fetch = FetchType.EAGER)
     private Role role = new Role();*/
 
-    public Admin(String name, String password, String username, Role role) {
+    public Admin(String name, String password, String username) {
         super(name, password, username);
     }
 

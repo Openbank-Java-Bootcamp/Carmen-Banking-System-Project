@@ -24,4 +24,7 @@ public class Savings extends Account{
         super(balance, primaryOwner, secondaryOwner, penaltyFee, creationDate, status, secretKey);
         this.interestRate = interestRate;
     }
+
+
+
 }

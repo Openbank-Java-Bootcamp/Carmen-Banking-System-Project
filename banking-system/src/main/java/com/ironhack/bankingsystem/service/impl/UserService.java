@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -36,17 +37,17 @@ public class UserService implements UserServiceInterface, UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
-        if(user == null) {
+        Optional<User> user = userRepository.findByUsername(username);
+        if(user.isEmpty()) {
             log.error("User not found in the database");
             throw new UsernameNotFoundException("User not found in the database");
         } else {
             log.info("User found in the database: {}", username);
             Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-            user.getRoles().forEach(role -> {
+            user.get().getRoles().forEach(role -> {
                 authorities.add(new SimpleGrantedAuthority(role.getName()));
             });
-            return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), authorities);
+            return new org.springframework.security.core.userdetails.User(user.get().getUsername(), user.get().getPassword(), authorities);
         }
     }
 
@@ -65,15 +66,20 @@ public class UserService implements UserServiceInterface, UserDetailsService {
 
     @Override
     public void addRoleToUser(String username, String roleName) {
-        log.info("Adding role {} to user {}", roleName, username);
-        User user = userRepository.findByUsername(username);
-        Role role = roleRepository.findByName(roleName);
-        user.getRoles().add(role);
-        userRepository.save(user);
-    }
 
+        log.info("Adding role {} to user {}", roleName, username);
+
+        Optional<User> user = userRepository.findByUsername(username);
+        if (user.isEmpty()) {
+            throw new UsernameNotFoundException("User not found in the database");
+        } else {
+            Role role = roleRepository.findByName(roleName);
+            user.get().getRoles().add(role);
+            userRepository.save(user.get());
+        }
+    }
     @Override
-    public User getUser(String username) {
+    public Optional<User> getUser(String username) {
         log.info("Fetching user {}", username);
         return userRepository.findByUsername(username);
     }
