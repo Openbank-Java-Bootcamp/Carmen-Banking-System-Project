@@ -1,5 +1,8 @@
 package com.ironhack.bankingsystem.users;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.ironhack.bankingsystem.models.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -7,7 +10,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.Date;
 
 @Entity
 @Data
@@ -15,9 +21,12 @@ import java.util.Collection;
 @NoArgsConstructor
 @Table(name = "account_holders")
 public class AccountHolders extends User{
-
+    /*@JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @NotNull
-    private String dateOfBirth;
+    private LocalDate dateOfBirth;*/
+    @NotNull
+    private Date dateOfBirth;
     @NotNull
     @Embedded
     @AttributeOverrides({
@@ -38,24 +47,12 @@ public class AccountHolders extends User{
 
   /*  @OneToMany*/
 
-    public AccountHolders(String name, String password, String username, String dateOfBirth, Address primaryAddress, Address mailingAddress) {
+    public AccountHolders(String name, String password, String username, Date dateOfBirth, Address primaryAddress, Address mailingAddress) {
         super(name, password, username);
         this.dateOfBirth = dateOfBirth;
         this.primaryAddress = primaryAddress;
         this.mailingAddress = mailingAddress;
     }
 
-    public AccountHolders(Long id, @NotNull String name, @NotNull String password, @NotNull String username, Collection<Role> roles, String dateOfBirth, Address primaryAddress, Address mailingAddress) {
-        super(id, name, password, username, roles);
-        this.dateOfBirth = dateOfBirth;
-        this.primaryAddress = primaryAddress;
-        this.mailingAddress = mailingAddress;
-    }
 
-    public AccountHolders(String name, String username, Collection<Role> roles, String password, String dateOfBirth, Address primaryAddress, Address mailingAddress) {
-        super(name, password, username, roles);
-        this.dateOfBirth = dateOfBirth;
-        this.primaryAddress = primaryAddress;
-        this.mailingAddress = mailingAddress;
-    }
 }

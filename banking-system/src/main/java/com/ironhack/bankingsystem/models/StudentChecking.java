@@ -2,6 +2,7 @@ package com.ironhack.bankingsystem.models;
 
 import com.ironhack.bankingsystem.classes.Money;
 import com.ironhack.bankingsystem.enums.Status;
+import com.ironhack.bankingsystem.users.AccountHolders;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -21,10 +22,9 @@ public class StudentChecking extends Account{
     @NotNull
     private double interestRate;
 
-    public StudentChecking() {
-    }
 
-    public StudentChecking(Money balance, String primaryOwner, String secondaryOwner, Money penaltyFee, Date creationDate, Status status, String secretKey, double interestRate) {
+
+    public StudentChecking(Money balance, AccountHolders primaryOwner, AccountHolders secondaryOwner, Money penaltyFee, Date creationDate, Status status, String secretKey, double interestRate) {
         super(balance, primaryOwner, secondaryOwner, penaltyFee, creationDate, status, secretKey);
         this.interestRate = interestRate;
     }

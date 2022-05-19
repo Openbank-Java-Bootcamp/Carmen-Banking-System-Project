@@ -1,4 +1,5 @@
 package com.ironhack.bankingsystem.controllers.impl;
+import com.ironhack.bankingsystem.DTO.NewThirdPartyDTO;
 import com.ironhack.bankingsystem.controllers.interfaces.ThirdPartyControllerInterface;
 import com.ironhack.bankingsystem.service.interfaces.ThirdPartyServiceInterface;
 import com.ironhack.bankingsystem.users.ThirdParty;
@@ -24,8 +25,8 @@ public class ThirdPartyController implements ThirdPartyControllerInterface {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ThirdParty createThirdParty(@RequestBody @Valid ThirdParty thirdParty){
-        return thirdPartyServiceInterface.saveThirdParty(thirdParty);
+    public ThirdParty createThirdParty(@RequestBody @Valid NewThirdPartyDTO newThirdPartyDTO){
+        return thirdPartyServiceInterface.saveThirdParty(newThirdPartyDTO);
     }
 
     @PutMapping("/{id}")

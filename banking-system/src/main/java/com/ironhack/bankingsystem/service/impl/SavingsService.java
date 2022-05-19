@@ -7,8 +7,10 @@ import com.ironhack.bankingsystem.repositories.StudentCheckingRepository;
 import com.ironhack.bankingsystem.service.interfaces.SavingsServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+@Service
 public class SavingsService implements SavingsServiceInterface {
 
     @Autowired
@@ -27,6 +29,7 @@ public class SavingsService implements SavingsServiceInterface {
                     savings.getCreationDate(),
                     savings.getStatus(),
                     savings.getSecretKey(),
+                    savings.getMinBalance(),
                     savings.getInterestRate()
 
             ));

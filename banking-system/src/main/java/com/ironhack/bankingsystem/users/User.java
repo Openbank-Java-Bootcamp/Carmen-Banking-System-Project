@@ -7,6 +7,10 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -24,15 +28,14 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull
+    @NotNull(message = "Please insert a name")
     private String name;
-    @NotNull
+    @NotNull(message = "Please insert a password")
     private String password;
-    @NotNull
+    @NotNull(message = "Please insert a username")
     private String username;
     @ManyToMany(fetch = EAGER)
     private Collection<Role> roles = new ArrayList<>();
-
 
     public User(String name, String password, String username) {
         this.name = name;

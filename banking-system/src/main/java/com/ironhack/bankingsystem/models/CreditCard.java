@@ -2,6 +2,7 @@ package com.ironhack.bankingsystem.models;
 
 import com.ironhack.bankingsystem.classes.Money;
 import com.ironhack.bankingsystem.enums.Status;
+import com.ironhack.bankingsystem.users.AccountHolders;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -24,9 +25,9 @@ public class CreditCard extends Account{
 
 
 
-    public CreditCard(  Money balance, String primaryOwner, String secondaryOwner, Money penaltyFee, Date creationDate, Status status, String secretKey, double creditLimit, double interestRate) {
+    public CreditCard(Money balance, AccountHolders primaryOwner, AccountHolders secondaryOwner, Money penaltyFee, Date creationDate, Status status, String secretKey) {
         super(balance, primaryOwner, secondaryOwner, penaltyFee, creationDate, status, secretKey);
-        this.creditLimit = creditLimit;
-        this.interestRate = interestRate;
+        this.creditLimit = 100;
+        this.interestRate = 0.2;
     }
 }

@@ -7,9 +7,10 @@ import com.ironhack.bankingsystem.repositories.CreditCardRepository;
 import com.ironhack.bankingsystem.service.interfaces.CreditCardServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-
+@Service
 public class CreditCardService implements CreditCardServiceInterface {
     @Autowired
     CreditCardRepository creditCardRepository;
@@ -26,11 +27,7 @@ public class CreditCardService implements CreditCardServiceInterface {
                     creditCard.getPenaltyFee(),
                     creditCard.getCreationDate(),
                     creditCard.getStatus(),
-                    creditCard.getSecretKey(),
-                    creditCard.getCreditLimit(),
-                    creditCard.getInterestRate()
-
-
+                    creditCard.getSecretKey()
             ));
         } catch (Exception e){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "No CreditCard account found");

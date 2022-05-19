@@ -1,5 +1,6 @@
 package com.ironhack.bankingsystem.service.impl;
 
+import com.ironhack.bankingsystem.DTO.NewThirdPartyDTO;
 import com.ironhack.bankingsystem.repositories.ThirdPartyRepository;
 import com.ironhack.bankingsystem.service.interfaces.ThirdPartyServiceInterface;
 import com.ironhack.bankingsystem.users.ThirdParty;
@@ -16,17 +17,16 @@ public class ThirdPartyService implements ThirdPartyServiceInterface {
     public ThirdParty getThirdParty(Long id){
         return thirdPartyRepository.findById(id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Third party not found"));
     }
-    public ThirdParty saveThirdParty(ThirdParty thirdParty) {
-        /*try {
+    public ThirdParty saveThirdParty(NewThirdPartyDTO thirdParty) {
+        try {
             return thirdPartyRepository.save(new ThirdParty(
-                    thirdParty.getName()
-                    *//*thirdParty.getHashedKey()*//*
+                    thirdParty.getName(),
+                    thirdParty.getMessage()
             ));
         } catch (Exception e){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "No third party found");
 
-        }*/
-        return null;
+        }
     }
 
     public void updateThirdParty(Long id, ThirdParty thirdParty){

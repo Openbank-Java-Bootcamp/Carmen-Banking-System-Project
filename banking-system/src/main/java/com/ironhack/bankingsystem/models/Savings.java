@@ -2,32 +2,47 @@ package com.ironhack.bankingsystem.models;
 
 import com.ironhack.bankingsystem.classes.Money;
 import com.ironhack.bankingsystem.enums.Status;
+import com.ironhack.bankingsystem.users.AccountHolders;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 
+import java.math.BigDecimal;
 import java.util.Date;
+
+import static java.util.Currency.getInstance;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "savings")
-public class Savings extends Account{
+public class Savings extends Account {
 
 
-    private double interestRate;
+    private double interestRate = 0.0025;
+    private double minBalance = 1000;
 
 
-    public Savings(Money balance, String primaryOwner, String secondaryOwner, Money penaltyFee, Date creationDate, Status status, String secretKey, double interestRate) {
+    public Savings(Money balance, AccountHolders primaryOwner, AccountHolders secondaryOwner, Money penaltyFee, Date creationDate, Status status, String secretKey, double interestRate, double minBalance) {
         super(balance, primaryOwner, secondaryOwner, penaltyFee, creationDate, status, secretKey);
-        this.interestRate = 0.0025;
-
+        this.interestRate = interestRate;
+        if(interestRate > 0.5) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Interest rate should be lower than 0.5");
+        }
+        this.minBalance = minBalance;
     }
 
-
-
+  /*  public void applyMaxInterestRate() {
+        if (interestRate.getAmount().compareTo(super.getBalance().getAmount()) > 0.5) {
+            BigDecimal newBalanceAmount = super.getBalance().decreaseAmount(getPenaltyFee().getAmount());
+            Money newBalance = new Money(newBalanceAmount,getInstance("EUR"));
+            super.setBalance(newBalance);
+        }
+    }*/
 }

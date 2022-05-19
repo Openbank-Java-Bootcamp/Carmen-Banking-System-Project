@@ -19,9 +19,14 @@ public class Money {
     @PositiveOrZero
     private BigDecimal amount;
 
+    public Money() {
+        this.currency = USD;
+    }
+
     /**
      * Class constructor specifying amount, currency, and rounding
      **/
+
 
     public Money(BigDecimal amount, Currency currency, RoundingMode rounding) {
         this.currency = currency;

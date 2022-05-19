@@ -6,6 +6,7 @@ import com.ironhack.bankingsystem.service.interfaces.AccountHoldersServiceInterf
 import com.ironhack.bankingsystem.users.AccountHolders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -18,6 +19,10 @@ public class AccountHoldersService implements AccountHoldersServiceInterface {
     @Autowired
     AccountHoldersRepository accountHoldersRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+
     public AccountHolders getAccountHolders(Long id){
         /*log.info("Fetching an account holder");*/
         return accountHoldersRepository.findById(id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Account holder not found"));
@@ -26,8 +31,8 @@ public class AccountHoldersService implements AccountHoldersServiceInterface {
         try {
             return accountHoldersRepository.save(new AccountHolders(
                     accountHolders.getName(),
+                    passwordEncoder.encode(accountHolders.getPassword()),
                     accountHolders.getUsername(),
-                    accountHolders.getPassword(),
                     accountHolders.getDateOfBirth(),
                     accountHolders.getPrimaryAddress(),
                     accountHolders.getMailingAddress()

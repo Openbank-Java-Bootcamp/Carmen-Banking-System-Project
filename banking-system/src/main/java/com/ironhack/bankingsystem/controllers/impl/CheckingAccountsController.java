@@ -1,11 +1,12 @@
 package com.ironhack.bankingsystem.controllers.impl;
 
-import com.ironhack.bankingsystem.controllers.interfaces.AccountHoldersControllerInterface;
+
+import com.ironhack.bankingsystem.DTO.CheckingAccountsDTO;
 import com.ironhack.bankingsystem.controllers.interfaces.CheckingAccountsControllerInterface;
 import com.ironhack.bankingsystem.models.CheckingAccounts;
-import com.ironhack.bankingsystem.service.interfaces.AccountHoldersServiceInterface;
+
+
 import com.ironhack.bankingsystem.service.interfaces.CheckingAccountsServiceInterface;
-import com.ironhack.bankingsystem.users.AccountHolders;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,7 +27,9 @@ public class CheckingAccountsController implements CheckingAccountsControllerInt
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public CheckingAccounts createCheckingAccounts(@RequestBody @Valid CheckingAccounts checkingAccounts){
+    public CheckingAccounts createCheckingAccounts(@RequestBody @Valid CheckingAccountsDTO checkingAccounts){
+
+
         return checkingAccountsServiceInterface.saveCheckingAccounts(checkingAccounts);
     }
 

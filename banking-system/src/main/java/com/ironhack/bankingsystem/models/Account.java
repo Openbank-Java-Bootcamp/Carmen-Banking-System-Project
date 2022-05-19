@@ -2,6 +2,7 @@ package com.ironhack.bankingsystem.models;
 
 import com.ironhack.bankingsystem.classes.Money;
 import com.ironhack.bankingsystem.enums.Status;
+import com.ironhack.bankingsystem.users.AccountHolders;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -28,9 +29,14 @@ public abstract class Account {
             @AttributeOverride(name = "currency", column = @Column(name = "balance_currency", nullable = false))
     })
     private Money balance;
+
     @NotNull
-    private String primaryOwner;
-    private String secondaryOwner;
+    @ManyToOne
+    @JoinColumn(name ="primary_owner_id")
+    public AccountHolders primaryOwner;
+    @ManyToOne
+    @JoinColumn(name ="secondary_owner_id")
+    private AccountHolders secondaryOwner;
     @NotNull
     @Column(length = 510)
     @Embedded
@@ -43,10 +49,11 @@ public abstract class Account {
     private Date creationDate;
     @NotNull
     private Status status;
-    @NotNull
+    @NotNull(message = "Please insert a password")
     private String secretKey;
 
-    public Account(Money balance, String primaryOwner, String secondaryOwner, Money penaltyFee, Date creationDate, Status status, String secretKey) {
+
+    public Account(Money balance, AccountHolders primaryOwner, AccountHolders secondaryOwner, Money penaltyFee, Date creationDate, Status status, String secretKey) {
         this.balance = balance;
         this.primaryOwner = primaryOwner;
         this.secondaryOwner = secondaryOwner;

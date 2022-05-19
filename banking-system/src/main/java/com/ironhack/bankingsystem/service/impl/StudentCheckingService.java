@@ -7,8 +7,10 @@ import com.ironhack.bankingsystem.repositories.StudentCheckingRepository;
 import com.ironhack.bankingsystem.service.interfaces.StudentCheckingServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+@Service
 public class StudentCheckingService implements StudentCheckingServiceInterface {
     @Autowired
     StudentCheckingRepository studentCheckingRepository;
