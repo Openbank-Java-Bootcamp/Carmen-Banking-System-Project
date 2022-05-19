@@ -29,6 +29,7 @@ public class CheckingAccountsService implements CheckingAccountsServiceInterface
 
     @Autowired
     AccountHoldersRepository accountHoldersRepository;
+    @Autowired
     StudentCheckingRepository studentCheckingRepository;
 
     public CheckingAccounts getCheckingAccounts(Long id){
