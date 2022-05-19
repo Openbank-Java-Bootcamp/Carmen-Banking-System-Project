@@ -1,11 +1,7 @@
 package com.ironhack.bankingsystem.service.impl;
 
-
-import com.ironhack.bankingsystem.repositories.AccountHoldersRepository;
 import com.ironhack.bankingsystem.repositories.ThirdPartyRepository;
-import com.ironhack.bankingsystem.service.interfaces.AccountHoldersServiceInterface;
 import com.ironhack.bankingsystem.service.interfaces.ThirdPartyServiceInterface;
-import com.ironhack.bankingsystem.users.AccountHolders;
 import com.ironhack.bankingsystem.users.ThirdParty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +14,6 @@ public class ThirdPartyService implements ThirdPartyServiceInterface {
     ThirdPartyRepository thirdPartyRepository;
 
     public ThirdParty getThirdParty(Long id){
-        /*log.info("Fetching an account holder");*/
         return thirdPartyRepository.findById(id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Third party not found"));
     }
     public ThirdParty saveThirdParty(ThirdParty thirdParty) {
