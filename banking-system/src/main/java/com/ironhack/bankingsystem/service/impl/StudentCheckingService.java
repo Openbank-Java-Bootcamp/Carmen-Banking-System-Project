@@ -1,8 +1,6 @@
 package com.ironhack.bankingsystem.service.impl;
 
-import com.ironhack.bankingsystem.models.CheckingAccounts;
 import com.ironhack.bankingsystem.models.StudentChecking;
-import com.ironhack.bankingsystem.repositories.CheckingAccountsRepository;
 import com.ironhack.bankingsystem.repositories.StudentCheckingRepository;
 import com.ironhack.bankingsystem.service.interfaces.StudentCheckingServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +26,7 @@ public class StudentCheckingService implements StudentCheckingServiceInterface {
                     studentChecking.getCreationDate(),
                     studentChecking.getStatus(),
                     studentChecking.getSecretKey(),
-                    studentChecking.getInterestRate()
+                    studentChecking.getMinBalance()
 
             ));
         } catch (Exception e){

@@ -1,10 +1,7 @@
 package com.ironhack.bankingsystem.controllers.impl;
 
-import com.ironhack.bankingsystem.controllers.interfaces.AccountHoldersControllerInterface;
 import com.ironhack.bankingsystem.controllers.interfaces.StudentCheckingControllerInterface;
-import com.ironhack.bankingsystem.models.CheckingAccounts;
 import com.ironhack.bankingsystem.models.StudentChecking;
-import com.ironhack.bankingsystem.service.interfaces.CheckingAccountsServiceInterface;
 import com.ironhack.bankingsystem.service.interfaces.StudentCheckingServiceInterface;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

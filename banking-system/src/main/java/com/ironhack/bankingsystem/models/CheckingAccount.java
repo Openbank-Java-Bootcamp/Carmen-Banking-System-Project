@@ -2,13 +2,14 @@ package com.ironhack.bankingsystem.models;
 
 import com.ironhack.bankingsystem.classes.Money;
 import com.ironhack.bankingsystem.enums.Status;
-import com.ironhack.bankingsystem.users.AccountHolders;
+import com.ironhack.bankingsystem.users.AccountHolder;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
@@ -16,7 +17,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "checking")
-public class CheckingAccounts extends Account{
+public class CheckingAccount extends Account{
 
     @NotNull
     private double minBalance;
@@ -29,10 +30,10 @@ public class CheckingAccounts extends Account{
     })
     private Money monthlyMaintenanceFee;
 
-    public CheckingAccounts(Money balance, AccountHolders primaryOwner, AccountHolders secondaryOwner, Money penaltyFee, Date creationDate, Status status, String secretKey, double minBalance, Money monthlyMaintenanceFee) {
+    public CheckingAccount(Money balance, AccountHolder primaryOwner, AccountHolder secondaryOwner, Money penaltyFee, Date creationDate, Status status, String secretKey) {
         super(balance, primaryOwner, secondaryOwner, penaltyFee, creationDate, status, secretKey);
-        this.minBalance = minBalance;
-        this.monthlyMaintenanceFee = monthlyMaintenanceFee;
+        this.minBalance = 250;
+        this.monthlyMaintenanceFee = new Money(BigDecimal.valueOf(12));
     }
 
 

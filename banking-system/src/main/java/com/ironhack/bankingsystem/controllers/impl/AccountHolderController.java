@@ -1,9 +1,9 @@
 package com.ironhack.bankingsystem.controllers.impl;
 
 
-import com.ironhack.bankingsystem.controllers.interfaces.AccountHoldersControllerInterface;
-import com.ironhack.bankingsystem.service.interfaces.AccountHoldersServiceInterface;
-import com.ironhack.bankingsystem.users.AccountHolders;
+import com.ironhack.bankingsystem.controllers.interfaces.AccountHolderControllerInterface;
+import com.ironhack.bankingsystem.service.interfaces.AccountHolderServiceInterface;
+import com.ironhack.bankingsystem.users.AccountHolder;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,31 +11,31 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/accountholders")
-public class AccountHolderController implements AccountHoldersControllerInterface{
+public class AccountHolderController implements AccountHolderControllerInterface {
 
     @Autowired
-    AccountHoldersServiceInterface accountHoldersServiceInterface;
+    AccountHolderServiceInterface accountHolderServiceInterface;
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public AccountHolders getAccountHolders(@PathVariable Long id){
-        return accountHoldersServiceInterface.getAccountHolders(id);
+    public AccountHolder getAccountHolders(@PathVariable Long id){
+        return accountHolderServiceInterface.getAccountHolders(id);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public AccountHolders createAccountHolders(@RequestBody @Valid AccountHolders accountHolders){
-        return accountHoldersServiceInterface.saveAccountHolders(accountHolders);
+    public AccountHolder createAccountHolders(@RequestBody @Valid AccountHolder accountHolder){
+        return accountHolderServiceInterface.saveAccountHolders(accountHolder);
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateAccountHolders(@PathVariable Long id, @RequestBody AccountHolders accountHolders){
-        accountHoldersServiceInterface.updateAccountHolders(id, accountHolders);
+    public void updateAccountHolders(@PathVariable Long id, @RequestBody AccountHolder accountHolder){
+        accountHolderServiceInterface.updateAccountHolders(id, accountHolder);
     }
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteAccountHolders(Long id) {
-        accountHoldersServiceInterface.deleteAccountHolders(id);
+        accountHolderServiceInterface.deleteAccountHolders(id);
     }
 }

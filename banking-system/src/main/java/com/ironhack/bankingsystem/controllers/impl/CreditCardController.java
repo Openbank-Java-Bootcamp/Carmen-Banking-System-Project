@@ -1,11 +1,8 @@
 package com.ironhack.bankingsystem.controllers.impl;
 
-import com.ironhack.bankingsystem.controllers.interfaces.AccountHoldersControllerInterface;
 import com.ironhack.bankingsystem.controllers.interfaces.CreditCardControllerInterface;
 import com.ironhack.bankingsystem.models.CreditCard;
-import com.ironhack.bankingsystem.models.Savings;
 import com.ironhack.bankingsystem.service.interfaces.CreditCardServiceInterface;
-import com.ironhack.bankingsystem.service.interfaces.SavingsServiceInterface;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

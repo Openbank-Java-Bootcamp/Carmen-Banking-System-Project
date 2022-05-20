@@ -1,6 +1,5 @@
 package com.ironhack.bankingsystem.controllers.interfaces;
 
-import com.ironhack.bankingsystem.models.CheckingAccounts;
 import com.ironhack.bankingsystem.models.StudentChecking;
 
 public interface StudentCheckingControllerInterface {

@@ -1,6 +1,5 @@
 package com.ironhack.bankingsystem.service.interfaces;
 
-import com.ironhack.bankingsystem.models.CheckingAccounts;
 import com.ironhack.bankingsystem.models.CreditCard;
 
 public interface CreditCardServiceInterface {

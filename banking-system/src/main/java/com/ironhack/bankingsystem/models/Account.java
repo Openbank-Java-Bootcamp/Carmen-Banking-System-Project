@@ -2,13 +2,14 @@ package com.ironhack.bankingsystem.models;
 
 import com.ironhack.bankingsystem.classes.Money;
 import com.ironhack.bankingsystem.enums.Status;
-import com.ironhack.bankingsystem.users.AccountHolders;
+import com.ironhack.bankingsystem.users.AccountHolder;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
@@ -33,10 +34,10 @@ public abstract class Account {
     @NotNull
     @ManyToOne
     @JoinColumn(name ="primary_owner_id")
-    public AccountHolders primaryOwner;
+    public AccountHolder primaryOwner;
     @ManyToOne
     @JoinColumn(name ="secondary_owner_id")
-    private AccountHolders secondaryOwner;
+    private AccountHolder secondaryOwner;
     @NotNull
     @Column(length = 510)
     @Embedded
@@ -53,11 +54,11 @@ public abstract class Account {
     private String secretKey;
 
 
-    public Account(Money balance, AccountHolders primaryOwner, AccountHolders secondaryOwner, Money penaltyFee, Date creationDate, Status status, String secretKey) {
+    public Account(Money balance, AccountHolder primaryOwner, AccountHolder secondaryOwner, Money penaltyFee, Date creationDate, Status status, String secretKey) {
         this.balance = balance;
         this.primaryOwner = primaryOwner;
         this.secondaryOwner = secondaryOwner;
-        this.penaltyFee = penaltyFee;
+        this.penaltyFee = new Money(BigDecimal.valueOf(40));
         this.creationDate = creationDate;
         this.status = status;
         this.secretKey = secretKey;
