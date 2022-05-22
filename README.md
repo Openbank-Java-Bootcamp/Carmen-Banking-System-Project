@@ -7,7 +7,7 @@ If the account holder is less than 24 years old an student account would be crea
 and a credit card one. There is a penalty fee for all account of 40$.
 Account holders can also transfer money to any other account, the transfer should only be processed if the account has sufficient funds.
 
-![Bank-System Class diagram]https://github.com/Openbank-Java-Bootcamp/Carmen-Banking-System-Project/blob/a4a29063f4350ddd657e4a10ebc983f82e962cdc/Class%20Diagram.png
+![Bank-System Class diagram]([https://github.com/Openbank-Java-Bootcamp/Carmen-Banking-System-Project/blob/a4a29063f4350ddd657e4a10ebc983f82e962cdc/Class%20Diagram.png](https://github.com/Openbank-Java-Bootcamp/Carmen-Banking-System-Project/blob/b81868276b80893165f640fa0db6449435b0b94c/Class%20Diagram.png))
 
 This project is made with Java based framework SpringBoot and MYSQL data base.
 
