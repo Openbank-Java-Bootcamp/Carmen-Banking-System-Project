@@ -58,6 +58,8 @@ public class CheckingAccount extends Account{
             this.setBalance(newBalance);
         }
 
+
+
 /*  public void deductMonthlyMaintenanceFee(){
         Period period = Period.between(getCreationDate(), LocalDate.now());
         int years = period.getYears();
@@ -72,5 +74,17 @@ public class CheckingAccount extends Account{
         }
     }*/
 
-
+    /*public void setBalance(Money balance){
+        if (minBalance == null) {
+            this.balance(balance);
+        }else{
+            int restBalance = balance.getAmount().compareTo(minBalance.getAmount());
+            if(restBalance == 0 || restBalance == 1){
+                this.balance = balance;
+            }else{
+                balance.setAmount(balance.getAmount().subtract(getPenaltyFee().getAmount()));
+                this.balance = balance;
+            }
+        }
+    }*/
 }
