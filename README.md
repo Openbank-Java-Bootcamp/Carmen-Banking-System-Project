@@ -7,7 +7,9 @@ If the account holder is less than 24 years old an student account would be crea
 and a credit card one. There is a penalty fee for all account of 40$.
 Account holders can also transfer money to any other account, the transfer should only be processed if the account has sufficient funds.
 
-![Bank-System Class diagram]([C:\Users\Usuario\Desktop\Java Ironhack\Modulo 1\Banking-System-Project\Class Diagram.png))
+
+![Class Diagram](https://user-images.githubusercontent.com/63664372/169709266-2786393e-6f94-4eef-b0ac-4ee71b7e39aa.png)
+
 
 This project is made with Java based framework SpringBoot and MYSQL data base.
 
