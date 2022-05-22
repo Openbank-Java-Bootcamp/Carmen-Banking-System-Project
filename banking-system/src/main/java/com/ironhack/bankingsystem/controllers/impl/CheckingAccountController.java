@@ -59,6 +59,6 @@ public class CheckingAccountController implements CheckingAccountControllerInter
     @ResponseStatus(HttpStatus.OK)
     public String getActualBalance(@PathVariable (name = "id") Long id){
         Money actualBalance = checkingAccountServiceInterface.getBalance(id);
-        return (" Actual Balance: "+ actualBalance);
+        return (actualBalance);
     }*/
 }

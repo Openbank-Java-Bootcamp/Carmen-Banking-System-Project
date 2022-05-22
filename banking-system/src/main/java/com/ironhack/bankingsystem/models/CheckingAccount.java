@@ -38,9 +38,6 @@ public class CheckingAccount extends Account{
     public CheckingAccount(Money balance, AccountHolder primaryOwner, AccountHolder secondaryOwner, Money penaltyFee, Date creationDate, Status status, String secretKey) {
         super(balance, primaryOwner, secondaryOwner, penaltyFee, creationDate, status, secretKey);
         this.minBalance = 250;
-        if (minBalance < 250) {
-            super.getBalance();
-        }
         this.monthlyMaintenanceFee = new Money(BigDecimal.valueOf(12));
     }
 
