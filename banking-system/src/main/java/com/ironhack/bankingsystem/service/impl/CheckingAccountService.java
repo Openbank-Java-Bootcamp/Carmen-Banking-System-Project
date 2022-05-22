@@ -1,6 +1,8 @@
 package com.ironhack.bankingsystem.service.impl;
 
 import com.ironhack.bankingsystem.DTO.CheckingAccountsDTO;
+import com.ironhack.bankingsystem.DTO.TransferDTO;
+import com.ironhack.bankingsystem.classes.Money;
 import com.ironhack.bankingsystem.models.Account;
 import com.ironhack.bankingsystem.models.CheckingAccount;
 
@@ -13,6 +15,8 @@ import com.ironhack.bankingsystem.service.interfaces.CheckingAccountServiceInter
 import com.ironhack.bankingsystem.users.AccountHolder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -20,6 +24,7 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.Optional;
 
 @Service
 public class CheckingAccountService implements CheckingAccountServiceInterface {
@@ -80,4 +85,37 @@ public class CheckingAccountService implements CheckingAccountServiceInterface {
         checkingAccountRepository.deleteById(id);
 
     }
+    public void sendTransfer(Long senderAccountId, TransferDTO transferDTO) {
+        String usernameSender;
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetails) {
+            usernameSender = ((UserDetails) principal).getUsername();
+        } else {
+            usernameSender = principal.toString();
+        }
+        String primaryOwnerName = checkingAccountRepository.findById(senderAccountId).get().getPrimaryOwner().getUsername();
+        String secondaryOwnerName = null;
+        if (checkingAccountRepository.findById(senderAccountId).get().getSecondaryOwner() != null) {
+            secondaryOwnerName = checkingAccountRepository.findById(senderAccountId).get().getSecondaryOwner().getUsername();
+        }
+        if (primaryOwnerName.equals(usernameSender) || (secondaryOwnerName != null && secondaryOwnerName.equals(usernameSender))) {
+            checkingAccountRepository.findById(senderAccountId).get().receiveTransfer(transferDTO.getTransferAmount());
+            checkingAccountRepository.findById(transferDTO.getRecipientAccountId()).get().sendTransfer(transferDTO.getTransferAmount());
+
+            checkingAccountRepository.save(checkingAccountRepository.findById(senderAccountId).get());
+            checkingAccountRepository.save(checkingAccountRepository.findById(transferDTO.getRecipientAccountId()).get());
+        } else {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "No authorization");
+        }
+    }
+ /*   public Money getBalance(Long id){
+        Optional<CheckingAccount> checkingAccountFromDb = checkingAccountRepository.findById(id);
+        if(checkingAccountFromDb.isEmpty()){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "No Checking Account found with ID:"+ id);
+        }else{
+            checkingAccountFromDb.get().deductMonthlyMaintenanceFee();
+            checkingAccountRepository.save(checkingAccountFromDb.get());
+            return checkingAccountFromDb.get().getBalance();
+        }
+    }*/
 }

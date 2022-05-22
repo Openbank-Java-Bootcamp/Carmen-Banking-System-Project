@@ -45,7 +45,7 @@ public abstract class Account {
             @AttributeOverride(name = "amount", column = @Column(name = "penaltyFee_amount", nullable = false)),
             @AttributeOverride(name = "currency", column = @Column(name = "penaltyFee_currency", nullable = false))
     })
-    private Money penaltyFee;
+    private Money penaltyFee = new Money(BigDecimal.valueOf(40));
     @NotNull
     private Date creationDate;
     @NotNull

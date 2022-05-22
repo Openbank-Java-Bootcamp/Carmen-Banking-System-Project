@@ -2,6 +2,8 @@ package com.ironhack.bankingsystem.controllers.impl;
 
 
 import com.ironhack.bankingsystem.DTO.CheckingAccountsDTO;
+import com.ironhack.bankingsystem.DTO.TransferDTO;
+import com.ironhack.bankingsystem.classes.Money;
 import com.ironhack.bankingsystem.controllers.interfaces.CheckingAccountControllerInterface;
 import com.ironhack.bankingsystem.models.Account;
 import com.ironhack.bankingsystem.models.CheckingAccount;
@@ -45,4 +47,18 @@ public class CheckingAccountController implements CheckingAccountControllerInter
         checkingAccountServiceInterface.deleteCheckingAccounts(id);
     }
 
+    @Override
+    @PatchMapping("/{id}/transfer")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void sendTransferAccount(@PathVariable (name = "id") Long senderAccountId, @RequestBody TransferDTO transferDTO){
+        System.out.println(senderAccountId);
+        checkingAccountServiceInterface.sendTransfer(senderAccountId,transferDTO);
+    }
+
+   /* @GetMapping("/checkingAccounts/balance/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public String getActualBalance(@PathVariable (name = "id") Long id){
+        Money actualBalance = checkingAccountServiceInterface.getBalance(id);
+        return (" Actual Balance: "+ actualBalance);
+    }*/
 }

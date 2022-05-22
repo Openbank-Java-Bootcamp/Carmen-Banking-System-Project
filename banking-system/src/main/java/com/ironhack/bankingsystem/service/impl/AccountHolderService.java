@@ -1,10 +1,13 @@
 package com.ironhack.bankingsystem.service.impl;
 
+import com.ironhack.bankingsystem.classes.Money;
 import com.ironhack.bankingsystem.repositories.AccountHolderRepository;
 import com.ironhack.bankingsystem.service.interfaces.AccountHolderServiceInterface;
 import com.ironhack.bankingsystem.users.AccountHolder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -49,6 +52,24 @@ public class AccountHolderService implements AccountHolderServiceInterface {
 
     }
 
-   /* public void makeTransfer(Long id)*/
+/*   public void makeTransfer(Long id, String recipientName, Money transferAmount){
+       Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+       if (principal instanceof UserDetails) {
+           String username = ((UserDetails)principal).getUsername();
+       } else {
+           String username = principal.toString();
+       }
+       accountHolderRepository.finB
+
+   }*/
 
 }
+
+//Acceder al accountHolder que hace la transferencia,
+//Comprobar que el balance del accountHolder es superior al transferAmount
+//Si es true, tenemos que tener acceso al accountHolder que lo recibe hacemos un patch, modificando su balance y añadiendo el transfer amount.
+//Deducir el transfer amount del que hace la transferencia del balance.
+//Si el false throw exception.
+
+
