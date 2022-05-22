@@ -14,18 +14,18 @@ This project is made with Java based framework SpringBoot and MYSQL data base.
 ## Models
 
 ### User model
-AccountHolder
-Admin
-ThirdParty
-Address
+ * AccountHolder
+ * Admin
+ * ThirdParty
+ * Address
 
 ### Account model
-CheckingAccount
-CreditCard
-Role
-Savings
-StudentChecking
-Money
+ * CheckingAccount
+ * CreditCard
+ * Role
+ * Savings
+ * StudentChecking
+ * Money
 
 
 ## The project have the following routes:
@@ -49,6 +49,9 @@ Money
 | DELETE | `/api/thirdparty/{id}`                |
 
 
+### Trello
 
+https://trello.com/b/6MpmaNrU/banking-system
 ## Resources
 Google, Shaun and Raymond were used as a resources.
+
